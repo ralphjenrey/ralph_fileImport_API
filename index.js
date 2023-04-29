@@ -29,14 +29,15 @@ const upload = multer({ storage: storage })
 app.post('/upload', upload.single('upfile'), function (req, res, next) {
   // Get file details
   const file = req.file;
-  const filename = file.filename;
+  const name = file.filename;
   const size = file.size;
-
+  const type = file.mimetype;
   // Return response
   res.json({
     message: 'File uploaded successfully',
-    filename: filename,
-    size: size
+    name: name,
+    size: size,
+    type: type
   });
 });
 
